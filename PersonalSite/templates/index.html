@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination Example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>{{ section.replace('_', ' ').title() }}</h1>
+    <ul>
+        {% for item in items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% for sec, content in sections.items() %}
+            <a href="{{ url_for('home', section=sec) }}" class="{% if sec == section %}active{% endif %}">
+                {{ sec.replace('_', ' ').title() }}
+            </a>
+        {% endfor %}
+    </div>
+
+
+    <div class="juice-description">
+        {% if section == 'adventures' %}
+            <h2>Juice</h2>
+            <button onclick="window.location.href='/juice'" class="extra-content">Read More About Juice</button>
+        {% elif section == 'about_me'%}
+            <h2>About Me</h2>
+            <button onclick="window.location.href='/about_me'" class="extra-content">Read More About Me</button>
+        {% endif %}
+    </div>
+    <footer>
+        &copy; 2025 Samhith's Project. All rights reserved.
+    </footer>
+</body>
+</html>
